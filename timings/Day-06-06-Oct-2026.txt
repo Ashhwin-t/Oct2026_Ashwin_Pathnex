@@ -1,0 +1,9 @@
+# What I did today
+
+1. 1 hour: Linux and Git Revision
+2. 30 mins: Interview speech practice
+3. 3 hours: Study:
+		1. Git
+		2. Linux
+		3. AWS
+4. 30 min: book reading
