@@ -1,0 +1,7 @@
+# What I did today
+
+1. 30 mins: Revision
+2. 1 hour: Interview questions walkthrough and practice
+3. 1:30 hours: 	hardlink and softlink creation and experiment with source file deletion and observed behaviour.
+		Tried running all commands and observed
+		Shell scripting
