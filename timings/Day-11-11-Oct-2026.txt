@@ -1,0 +1,5 @@
+# What I Did today After Morning Class
+
+1. 3 Hours: Kubernetes and Docker study
+2. 30 Mins: Engish Practice 
+3. 45 Mins: Docker Practical
