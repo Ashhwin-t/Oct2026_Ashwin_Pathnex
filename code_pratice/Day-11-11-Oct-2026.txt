@@ -1,0 +1,116 @@
+Day 11- Kubernetes with Hem, Advanced Terraform and GitLab CICD
+
+Ansible- Install Helm on Server
+
+- name: Install Helm
+  hosts: all
+  become: yes
+  tasks:
+    - name: Download helm
+	  git _url:
+	    url: https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz
+		dest: /tmp/helm.tar.gz
+		
+	- name: Extract Helm
+	  unarchive:
+	    src: /tmp/helm.tar.gz
+		dest: /usr/local/bin/
+		remote_src: yes
+		
+	- name: Set helm Binary Permissions
+	  file:
+	    path: /usr/local/bin/helm
+		mode: '0755'
+		
+Terraform:- Provision EC@ with Elastic IP
+
+resource "aws_eip" "pathnex_eip"{
+	instancce = aws_instance.pathnex_ec2.id
+}
+
+resource "aes_instance" "pathnex_ec2"{
+	ami			= "ami-0abcd1234abcd1234"
+	instance_type	= "t3.medium"
+	
+	tags = {
+		name = "pathnex-EC2"
+	}
+}
+
+Kuberntes -  Helm Chart For Nginx
+
+helm repo add table https://charts.helm.sh/stable
+helm install athnex-nginx stable/nginx-ingress
+
+Jenkinsfile -  Multistage pipeline
+
+pipeline {
+	agent any 
+	environment {
+		IMAGE_NAME = 'pathnex-web-app'
+	}
+	
+	stages{
+		stage('Checkout'){
+			steps {
+			git 'https://github.com/pathnex/sample-repo.git'
+			}
+		}
+		stage('Build Docker Image'){
+			steps{
+				script{
+					docker.build("${env.IMAGE_NAME}")
+				}
+			}
+		}
+		
+		stage('Push Docker Image'){
+			steps{
+				script{
+					docker.push("${env.IMAGE_NAME}")
+				}
+			}
+		}
+		
+		stage('Deploy To Kubernetes'){
+			steps{
+				script{
+					sh 'kubectl apply -f deployment.yaml'
+				}
+			}
+		}
+	}
+}
+
+GitLab CI/CD - Build, push, and deploy with helm
+
+	stages:
+	  - build
+	  - push
+	  - deploy
+	  
+	build:
+		stage: build
+		script:
+		  - docker build -t pathnex-web-app .
+	
+	push:
+		stage: push
+		script:
+		  - docker login -u "$CI_REGISTRY_USER" -p "CI_REGISTRY_PASSWORD"
+		  - docker push pathnex-web-app
+		  
+		
+	deploy:
+		stage: deploy
+		script:
+		  - helm repo add stable https://charts.helm.sh/stable
+		  - helm install pathnex-nginx stable/nginx-ingress
+		  
+		  
+Docker:
+Expose & Port Mapping
+
+FROM nginx
+EXPOSE 80
+docker run -d -p 8080:80 nginx
