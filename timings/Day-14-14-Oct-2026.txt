@@ -1,0 +1,6 @@
+# What I did today
+
+30 Mins: English Practice
+2 Hours: EKS with Terraform and Cluster Upgrade
+2 Hours: study
+1 Hour : revision
