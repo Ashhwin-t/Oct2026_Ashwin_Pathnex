@@ -1,0 +1,6 @@
+# What I did today
+
+40 mins: interview practice
+1 Hour: Deployed AKS cluster manually
+3 Hours: Study
+ 
