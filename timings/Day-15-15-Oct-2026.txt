@@ -1,0 +1,6 @@
+# What I did today
+
+30 Mins: English Communication
+1 Hour: Cluster creation through Terraform
+3 Hours : Istio study
+
