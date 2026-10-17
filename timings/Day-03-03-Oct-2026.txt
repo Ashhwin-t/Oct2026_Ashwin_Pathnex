@@ -1,0 +1,6 @@
+# What I did today
+
+1. 15 mins: English Practice
+2. 1 hour: Coding Practice including previous codes
+3. 3 hours: study : 
+		files and folder handling, permission, ownership, User creation and management, acess  modification etc, softlink hardlink
