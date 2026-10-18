@@ -1,0 +1,6 @@
+# What I did today:
+
+1.40 mins: English Interview practice
+2.30 mins: Configuring ArgoCD
+3. 3 hours: ArgoCD, Helm study
+4. 1 Hour: Revised Kubernetes
