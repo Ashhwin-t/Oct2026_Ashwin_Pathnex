@@ -1,0 +1,5 @@
+ What I did today:
+ 
+ 1. 1 Hour : terraform Study
+ 2. 30 mins: English Communication
+ 3. 2 Hours: Istio study
