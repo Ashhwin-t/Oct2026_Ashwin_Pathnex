@@ -1,0 +1,6 @@
+What I Did Today
+
+15 mins: English practice
+1 hour: Terraform revision
+3 Hours: Ansible, ArgoCD study
+1Hour: Lab
