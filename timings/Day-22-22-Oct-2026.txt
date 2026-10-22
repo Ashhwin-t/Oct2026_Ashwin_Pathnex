@@ -1,0 +1,5 @@
+What I did today:
+
+30 Mins: English Practice and book reading
+2 Hours: Grafana Practical
+1 Hour: helm
