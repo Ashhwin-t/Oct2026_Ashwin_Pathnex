@@ -1,0 +1,110 @@
+Day 24: Advanced Terraform Modules and CI/CD Pipeline Scaling
+
+Ansible: Depoy Docker Containers with Kubernetes using  Helm
+----------------------------------------------------------------------
+
+- name : Deploy Docker Containers with Helm
+  host: localhost
+  tasks:
+    - name: Install Helm
+	  command: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+	- name: Deploy microservices with Helm
+	  command: helm install pathnex.app ./microservice-chart
+	  
+----------------------------------------------------------------------
+Terrafom: Multi-Module Infrastructure with Outputs
+----------------------------------------------------------------------
+
+module "ahswin_vpc" {
+  source = "./vpc"
+}
+module "ashwin_instance" {
+  source = "./instance"
+  vpc_id = module.ashwin_vpc.vpc_id
+  
+}
+
+output "instance_id" {
+  vale = module.ashwin_instance.instance_id
+}
+
+
+----------------------------------------------------------------------
+Kubernetes: Helm based Auto-Scaling Deployments
+----------------------------------------------------------------------
+
+apiVersion: app/v1
+kind: Deployments
+metadata:
+  name: ashwin-web-app
+  namespace: devapp
+  labels:
+    app: ashwin-web-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+	  app: ashwin-web-app
+  strategy:
+    type: RollingUpdate
+	rollingupdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
+  template:
+    metadata:
+	  labels:
+	    app: ashwin-web-app
+	spec:
+	  containers:
+	    - name: nginx
+		  image: nginx
+		  ports:
+		    - containerPort: 8022
+		  imagepullpolicy: IfNotPresent
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ashwin-web-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: app/v1
+	kind: Deploymeent
+	name: ashwin-web-app
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  
+  
+  
+----------------------------------------------------------------------
+Jenkinsfile: Scaling CICD Pipeline
+----------------------------------------------------------------------
+
+pepeline {
+	agent any
+	stages {
+		stage('scale up') {
+			steps {
+				echo "scaling up jenkins pipeline agents heavy workloads"
+			}
+		}
+		stage('Build') {
+			steps {
+				echo "Building Docker Image"
+			}
+		}
+		stage('Deploy'){
+			steps{
+				echo "Deploying Application"
+			}
+		}
+	}
+	
+}
+
+----------------------------------------------------------------------
+Docker : Healthcheck
+----------------------------------------------------------------------
+FROM nginx
+HEALTHCHECK CMD curl --fail http://localhost || exit 1
