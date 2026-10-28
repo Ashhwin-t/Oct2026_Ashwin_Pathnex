@@ -1,0 +1,6 @@
+What I did today:
+
+30 Mins: Engish Communication
+1 Hour: SSL study
+2.30 Hours: Docker revision
+45 Mins: Kubernetes and Docker coding practice

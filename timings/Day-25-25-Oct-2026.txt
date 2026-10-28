@@ -1,6 +1,0 @@
-What I did today:
-
-40 mins: English
-1 Hour: Kafka
-2.30 Hours: Kubernetes Study
-2 Hours: Azure study
