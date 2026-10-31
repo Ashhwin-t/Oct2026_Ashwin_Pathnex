@@ -1,0 +1,6 @@
+ what I Did TOday:
+	  
+	  30 Mins: English Prep
+	  1 Hour : Explored SRE Rols And Responsibilities
+	  2 Hours: AWS Lab Practice
+	  1.30 Hours: Docker Practice
