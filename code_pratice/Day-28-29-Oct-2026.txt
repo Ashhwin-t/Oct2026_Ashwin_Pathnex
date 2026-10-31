@@ -1,0 +1,51 @@
+Day 28 — Advanced Networking with VPCs and Peering
+Ansible — Set Up VPC Peering Between AWS Accounts
+---------------------------------------------------------------------------------------------------------------------
+
+- name: Setup VPC Peering Between Accounts
+  hosts: localhost
+  tasks:
+    - name: Create VPC peering connection
+      command: aws ec2 create-vpc-peering-connection --vpc-id vpc-12345678 --peer-vpc-id vpc-87654321
+
+---------------------------------------------------------------------------------------------------------------------
+Terraform: VPC Peering and Route Tables
+---------------------------------------------------------------------------------------------------------------------
+resource "aws_vpc_peering_connection" "ashwin_peering" {
+  vpc_id      = aws_vpc.ashwin_vpc.id
+  peer_vpc_id = aws_vpc.peer_vpc.id
+}
+
+resource "aws_route" "ashwin_route" {
+  route_table_id         = aws_route_table.ashwin_rt.id
+  destination_cidr_block = "10.0.0.0/16"
+  vpc_peering_connection_id = aws_vpc_peering_connection.ashwin_peering.id
+}
+---------------------------------------------------------------------------------------------------------------------
+Kubernetes: Multi-Cluster VPC Peering and Network Policy
+---------------------------------------------------------------------------------------------------------------------
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ashwin-vpc-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: ashwin-app
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: ashwin-db
+
+
+---------------------------------------------------------------------------------------------------------------------
+Docker: Docker Save, Load & Backup
+---------------------------------------------------------------------------------------------------------------------
+docker save -o ashwin-nginx.tar ashwin-nginx
+
+docker load -i ashwin-nginx.tar
+---------------------------------------------------------------------------------------------------------------------
+Bash
+---------------------------------------------------------------------------------------------------------------------
+docker run --rm -v ashwin-volume:/data -v $(pwd):/backup ubuntu tar czf /backup ashwin-backup.tar.gz /data
